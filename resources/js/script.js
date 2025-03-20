@@ -25,7 +25,6 @@ function updateTimer() {
     let months = now.getMonth() - startDate.getMonth();
     let dayDifference = now.getDate() - startDate.getDate();
 
-    // Check if the time threshold has been crossed
     if (now.getFullYear() === startDate.getFullYear() &&
         now.getMonth() === startDate.getMonth() &&
         now.getDate() === startDate.getDate()) {
