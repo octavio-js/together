@@ -64,8 +64,26 @@ function updateTimer() {
 function showRandomImage() {
   let randomIndex = Math.floor(Math.random() * 10) + 1;
   image.src = `./resources/media/cats${randomIndex}.jpg`;
-  console.log(randomIndex);
 }
+
+async function showRandomQuote() {
+  try {
+    const response = await fetch('./resources/json/quotes.json');
+    const quotes = await response.json();
+
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    const randomQuote = quotes[randomIndex];
+
+    document.querySelector('.quote').textContent = `"${randomQuote.text}"`;
+    document.querySelector('.quote').innerHTML = randomQuote.text.replace(/\n/g, '<br>');
+  } 
+  catch (error) {
+    console.error('Error loading quotes:', error);
+    document.getElementById('quote').textContent = 'Failed to load quote.';
+  }
+}
+
+showRandomQuote();
 
 showRandomImage();
 
